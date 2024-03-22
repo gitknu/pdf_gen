@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create and Save PDF</title>
+</head>
+<body>
+    <input type="text" id="textInput" placeholder="Enter text">
+    <button onclick="generatePDF()">Send</button>
+
+    <script>
+        function generatePDF() {
+    const text = document.getElementById("textInput").value;
+    const doc = new jsPDF();
+    doc.setFontSize(12);
+    doc.text(text, 10, 10);
+    doc.save("output.pdf");
+}
+    </script>
+</body>
+</html>
