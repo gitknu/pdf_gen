@@ -19,9 +19,7 @@
   </select>
   <button onclick="generatePDF()">Надіслати</button>
   <script>
-    // Step 1: Define the font on the document
     pdfMake.fonts = {
-        // All 4 components must be defined
         TimesNewRoman: {
             normal: 'Times-New-Roman-Regular.ttf',
             bold: 'Times-New-Roman-Bold.ttf',
@@ -52,7 +50,7 @@
             {
               text: `Мене звати ${inputText1} і я працюю в ${inputText2} у місті ${inputText3}.`,
               fontSize: 14,
-              font: 'TimesNewRoman' // Set the font to Times New Roman
+              font: 'TimesNewRoman'
             }
           ]
         };
