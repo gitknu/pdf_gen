@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>PDF Generation Example</title>
+  <title>DoTSNUK</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+  <meta charset="UTF-8">
 </head>
 <body>
-  <input type="text" id="inputText" placeholder="Enter text">
-  <button onclick="generatePDF()">Generate PDF</button>
+  <input type="text" id="inputText" placeholder="Введіть свій текст...">
+  <button onclick="generatePDF()">Надіслати</button>
 
   <script>
     function generatePDF() {
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF();
       const inputText = document.getElementById('inputText').value;
+      doc.setFont('Times New Roman', 'normal');
       doc.text(inputText, 10, 10);
       doc.output('save', 'sample.pdf');
     }
