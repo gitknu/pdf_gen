@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DoTSNUK</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.56/vfs_fonts.js"></script>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <h3>Напишіть своє ім'я</h3>
+  <input type="text" id="inputText1" placeholder="Введіть свій текст...">
+  <h3>Напишіть своє місце роботи</h3>
+  <input type="text" id="inputText2" placeholder="Введіть свій текст...">
+  <h3>Оберіть своє місто</h3>
+  <select id="inputText3">
+    <option value="Київ">Київ</option>
+    <option value="Харків">Харків</option>
+    <option value="Львів">Львів</option>
+  </select>
+  <button onclick="generatePDF()">Надіслати</button>
+  <script>
+    // Step 1: Define the font on the document
+    pdfMake.fonts = {
+        // All 4 components must be defined
+        TimesNewRoman: {
+            normal: 'Times-New-Roman-Regular.ttf',
+            bold: 'Times-New-Roman-Bold.ttf',
+            italics: 'Times-New-Roman-Italic.ttf',
+            bolditalics: 'Times-New-Roman-BoldItalic.ttf'
+        }
+    };
+
+    function generatePDF() {
+      const inputText1 = document.getElementById('inputText1').value;
+      const inputText2 = document.getElementById('inputText2').value;
+      const inputText3 = document.getElementById('inputText3').value;
+      const forbiddenWords1 = ['привіт', 'бувай', 'вітаю'];
+      const forbiddenWords2 = ['Росія', 'Білорусь'];
+
+      const containsForbiddenWord1 = forbiddenWords1.some(word => inputText1.toLowerCase().includes(word));
+      const containsForbiddenWord2 = forbiddenWords2.some(word => inputText2.toLowerCase().includes(word));
+
+      if (containsForbiddenWord1) {
+        alert('Слова "Привіт", "Бувай", "Вітаю" тут не підходять. Надрукуйте, будь ласка, іншу відповідь!');
+      }       
+      else if (containsForbiddenWord2) {
+        alert('Слова "Росія" або "Білорусь" тут не підходять. Надрукуйте, будь ласка, іншу відповідь!');
+      } else {
+        // Step 2: Set the font on your text block
+        const docDefinition = {
+          content: [
+            {
+              text: `Мене звати ${inputText1} і я працюю в ${inputText2} у місті ${inputText3}.`,
+              fontSize: 14,
+              font: 'TimesNewRoman' // Set the font to Times New Roman
+            }
+          ]
+        };
+
+        pdfMake.createPdf(docDefinition).download('sample.pdf');
+      }
+    }
+  </script>
+</body>
+</html>
