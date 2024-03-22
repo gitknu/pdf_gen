@@ -3,10 +3,11 @@
 <head>
   <title>DoTSNUK</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
-          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.56/vfs_fonts.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.56/vfs_fonts.js"></script>
   <meta charset="UTF-8">
 </head>
 <body>
+  <h3>Напишіть своє ім'я</h3> <!-- Added h3 element -->
   <input type="text" id="inputText" placeholder="Введіть свій текст...">
   <button onclick="generatePDF()">Надіслати</button>
 
@@ -19,7 +20,7 @@
       } else {
         const docDefinition = {
           content: [
-            { text: inputText, fontSize: 14 }
+            { text: `Мене звати ${inputText} і я працівник КНУТШ`, fontSize: 14 }
           ]
         };
 
