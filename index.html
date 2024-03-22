@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DoTSNUK</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.56/vfs_fonts.js"></script>
+  <meta charset="UTF-8">
+<style>
+    body {
+      text-align: center;
+    }
+    .container {
+      display: flex;
+      justify-content: space-between;
+    }
+    .left {
+      align-self: flex-start;
+    }
+    .right {
+      align-self: flex-end;
+    }
+    .center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    option {
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+    <h1>DoTSNUK</h1>
+    <h6><i>подання перестали бути складними</i></h6>
+    
+  <br><h3>Оберіть на кого подання (посада)</h3>
+  <select id="inputText1">
+    <option value="Першому проректору">перший проректор</option>
+    <option value="Проректору з науково-педагогічної роботи">науково-педагогічної роботи</option>
+    <option value="Проектору з наукової роботи">наукової роботи</option>
+  </select>
+   <br><br><br><h3>Оберіть на кого подання (ім'я)</h3>
+  <select id="inputText2">
+    <option value="ий Володимире Васильовичу">Володимир Ільченко</option>
+    <option value="ий Андрію Петровичу">Андрій Гожик</option>
+    <option value="а Ганно Миколаївно">Ганна Толстанова</option>
+  </select>
+  <br><br><br><h3>Розпишіть свою задачу</h3>
+  <textarea id="inputText3" rows="3" style="width: 50%" placeholder="Введіть свій текст..."></textarea>
+  <br><br>
+  <button onclick="generatePDF()">Надіслати</button>
+  <script>
+    function generatePDF() {
+      const inputText1 = document.getElementById('inputText1').value;
+      const inputText2 = document.getElementById('inputText2').value;
+      const inputText3 = document.getElementById('inputText3').value;
+      const forbiddenWords1 = ['привіт', 'бувай', 'вітаю'];
+      const forbiddenWords2 = ['Росія', 'Білорусь'];
+
+      const containsForbiddenWord1 = forbiddenWords1.some(word => inputText1.toLowerCase().includes(word));
+      const containsForbiddenWord2 = forbiddenWords2.some(word => inputText2.toLowerCase().includes(word));
+
+      if (containsForbiddenWord1 || containsForbiddenWord2) {
+        alert('Слова "Привіт", "Бувай", "Вітаю", "Росія" або "Білорусь" тут не підходять. Надрукуйте, будь ласка, іншу відповідь!');
+      } else {
+        const docDefinition = {
+          content: [
+            {
+              columns: [
+        { text: `Тут теж можна писати`, fontSize: 14, alignment: 'left', margin: [10, 10, 0, 0] },
+        { text: `${inputText1}`, fontSize: 14, alignment: 'right', margin: [0, 10, 10, 0] }
+      ]
+    },
+        { text: `Київського національного`, fontSize: 14, alignment: 'right', margin: [0, 10, 10, 0] },
+        { text: `університету імені`, fontSize: 14, alignment: 'right', margin: [0, 10, 10, 0] },
+        { text: `Тараса Шевченка`, fontSize: 14, alignment: 'right', margin: [0, 10, 10, 0] },
+        { text: ` `, fontSize: 14, margin: [0, 0, 0, 140] }, 
+        { text: `Шановн${inputText2}!`, fontSize: 14, alignment: 'center', margin: [10, 10, 0, 20] },
+        { text: `${inputText3}`, fontSize: 14, alignment: 'left', margin: [10, 10, 0, 280] }
+  ]
+        };
+        pdfMake.createPdf(docDefinition).download('sample.pdf');
+      }
+    }
+  </script>
+</body>
+</html>
