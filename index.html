@@ -10,23 +10,25 @@
   <h3>Напишіть своє ім'я</h3> <!-- Added h3 element -->
   <input type="text" id="inputText" placeholder="Введіть свій текст...">
   <button onclick="generatePDF()">Надіслати</button>
-
   <script>
-    function generatePDF() {
-      const inputText = document.getElementById('inputText').value;
+function generatePDF() {
+  const inputText = document.getElementById('inputText').value;
+  const forbiddenWords = ['привіт', 'бувай', 'вітаю'];
 
-      if (inputText.toLowerCase().includes('привіт')) {
-        alert('Слово "Привіт" тут не підходить. Надрукуйте, будь ласка, іншу відповідь!');
-      } else {
-        const docDefinition = {
-          content: [
-            { text: `Мене звати ${inputText} і я працюю в КНУТШ`, fontSize: 14 }
-          ]
-        };
+  const containsForbiddenWord = forbiddenWords.some(word => inputText.toLowerCase().includes(word));
 
-        pdfMake.createPdf(docDefinition).download('sample.pdf');
-      }
-    }
+  if (containsForbiddenWord) {
+    alert('Слова "Привіт", "Бувай" або "Вітаю" тут не підходять. Надрукуйте, будь ласка, іншу відповідь!');
+  } else {
+    const docDefinition = {
+      content: [
+        { text: `Мене звати ${inputText} і я працюю в КНУТШ`, fontSize: 14 }
+      ]
+    };
+
+    pdfMake.createPdf(docDefinition).download('sample.pdf');
+  }
+}
   </script>
 </body>
 </html>
