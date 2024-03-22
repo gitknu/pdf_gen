@@ -25,14 +25,18 @@
   </style>
 </head>
 <body>
-  <h3>Оберіть на кого подання</h3>
+  <h3>Оберіть на кого подання (посада)</h3>
   <select id="inputText1">
     <option value="Першому проректору">перший проректор</option>
     <option value="Проректору з науково-педагогічної роботи">науково-педагогічної роботи</option>
     <option value="Проектору з наукової роботи">наукової роботи</option>
   </select>
-  <h3>Напишіть своє ім'я</h3>
-  <input type="text" id="inputText2" placeholder="Введіть свій текст...">
+   <h3>Оберіть на кого подання (ім'я)</h3>
+  <select id="inputText2">
+    <option value="ий Володимире Васильовичу">Володимир Ільченко</option>
+    <option value="ий Андрію Петровичу">Андрій Гожик</option>
+    <option value="а Ганно Миколаївно">Ганна Толстанова</option>
+  </select>
   <h3>Напишіть своє місце роботи</h3>
   <input type="text" id="inputText3" placeholder="Введіть свій текст...">
   <button onclick="generatePDF()">Надіслати</button>
@@ -60,7 +64,9 @@
     },
         { text: `Київського національного`, fontSize: 14, alignment: 'right', margin: [0, 10, 10, 0] },
         { text: `університету імені`, fontSize: 14, alignment: 'right', margin: [0, 10, 10, 0] },
+        { text: `Тараса Шевченка`, fontSize: 14, alignment: 'right', margin: [0, 10, 10, 0] },
         { text: ` `, fontSize: 14, margin: [0, 0, 0, 140] }, 
+        { text: `Шановн${inputText2}!`, fontSize: 14, alignment: 'center', margin: [10, 10, 0, 20] },
         { text: `У місті ${inputText3} дуже багато різного тексту, дуже багато різного тексту, дуже багато різного тексту, дуже багато різного тексту.`, fontSize: 14, alignment: 'left', margin: [10, 10, 0, 280] }
   ]
         };
