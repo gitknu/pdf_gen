@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>DoTSNUK</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.68/pdfmake.min.js"></script>
+          <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.56/vfs_fonts.js"></script>
+  <meta charset="UTF-8">
+</head>
+<body>
+  <input type="text" id="inputText" placeholder="Введіть свій текст...">
+  <button onclick="generatePDF()">Надіслати</button>
+
+  <script>
+    function generatePDF() {
+      const inputText = document.getElementById('inputText').value;
+
+      if (inputText.toLowerCase().includes('привіт')) {
+        alert('Слово "Привіт" тут не підходить. Надрукуйте, будь ласка, іншу відповідь!');
+      } else {
+        const docDefinition = {
+          content: [
+            { text: inputText, fontSize: 14 }
+          ]
+        };
+
+        pdfMake.createPdf(docDefinition).download('sample.pdf');
+      }
+    }
+  </script>
+</body>
+</html>
