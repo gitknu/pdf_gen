@@ -25,16 +25,16 @@
   </style>
 </head>
 <body>
-  <h3>Напишіть своє ім'я</h3>
-  <input type="text" id="inputText1" placeholder="Введіть свій текст...">
-  <h3>Напишіть своє місце роботи</h3>
-  <input type="text" id="inputText2" placeholder="Введіть свій текст...">
-  <h3>Оберіть своє місто</h3>
-  <select id="inputText3">
-    <option value="Київ">Київ</option>
-    <option value="Харків">Харків</option>
-    <option value="Львів">Львів</option>
+  <h3>Оберіть на кого подання</h3>
+  <select id="inputText1">
+    <option value="Першому проректору">перший проректор</option>
+    <option value="Проректору з науково-педагогічної роботи">науково-педагогічної роботи</option>
+    <option value="Проектору з наукової роботи">наукової роботи</option>
   </select>
+  <h3>Напишіть своє ім'я</h3>
+  <input type="text" id="inputText2" placeholder="Введіть свій текст...">
+  <h3>Напишіть своє місце роботи</h3>
+  <input type="text" id="inputText3" placeholder="Введіть свій текст...">
   <button onclick="generatePDF()">Надіслати</button>
   <script>
     function generatePDF() {
@@ -54,10 +54,12 @@
           content: [
             {
               columns: [
-        { text: `Мене звати ${inputText1}`, fontSize: 14, alignment: 'left', margin: [10, 10, 0, 0] },
-        { text: `я працюю в ${inputText2}`, fontSize: 14, alignment: 'right', margin: [0, 10, 10, 0] }
+        { text: `Тут теж можна писати`, fontSize: 14, alignment: 'left', margin: [10, 10, 0, 0] },
+        { text: `${inputText1}`, fontSize: 14, alignment: 'right', margin: [0, 10, 10, 0] }
       ]
     },
+        { text: `Київського національного`, fontSize: 14, alignment: 'right', margin: [0, 10, 10, 0] },
+        { text: `університету імені`, fontSize: 14, alignment: 'right', margin: [0, 10, 10, 0] },
         { text: ` `, fontSize: 14, margin: [0, 0, 0, 140] }, 
         { text: `У місті ${inputText3} дуже багато різного тексту, дуже багато різного тексту, дуже багато різного тексту, дуже багато різного тексту.`, fontSize: 14, alignment: 'left', margin: [10, 10, 0, 280] }
   ]
